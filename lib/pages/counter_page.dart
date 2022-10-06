@@ -11,7 +11,7 @@ class _CounterPageState extends State<CounterPage> {
   num counter = 0;
 
   void decrementar() {
-    if (counter > 0) {
+    while (counter > 0) {
       setState(() {
         counter--;
         ScaffoldMessenger.of(context).showSnackBar(
@@ -33,8 +33,19 @@ class _CounterPageState extends State<CounterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text('Counter App'),
+        title: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/home');
+                },
+              ),
+              const Text('Counter App'),
+            ],
+          ),
         ),
       ),
       body: Column(
